@@ -1,0 +1,34 @@
+/* Evita que los botones de LoginCard crezcan al hacer hover */
+.LoginCard-btn,
+.LoginCard-btn:focus,
+.LoginCard-btn:hover {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Animación de rotación infinita para el logo */
+.logo-rotate img {
+  animation: spinLogo 2.5s linear infinite;
+}
+.logo-rotate img:hover {
+  animation-play-state: paused;
+}
+@keyframes spinLogo {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animación de aparecer desde abajo para LoginPage */
+.login-animate {
+  opacity: 0;
+  transform: translateY(40px);
+}
+.login-animate.login-animate-active {
+  animation: slideUp 0.7s forwards;
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,39 @@
+.c-container{
+    justify-content: space-around;
+    gap: 1rem;
+}
+.c-container>img{
+    width: 9rem;
+}
+
+.c-title {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #f66405;
+    font-weight: bold;
+}
+.c-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.c-logo {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.c-logo.c-logo-animate {
+    animation: slideUp 0.7s forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

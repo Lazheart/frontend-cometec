@@ -1,0 +1,172 @@
+@import "swiper/css/pagination";
+@import "swiper/css/scrollbar";
+@import "swiper/css";
+@import "swiper/css/effect-coverflow";
+
+.about-section {
+  background-color: #f3f3f3; /* gris claro */
+  padding: 3rem 0;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-title {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.about-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    color: #ffffff;
+}
+
+.card {
+  gap: 0.6rem;
+  background: #f66405;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgb(243, 124, 5);
+  padding: 2rem;
+  max-width: 400px;
+  margin: auto;
+    transition: all 300ms ease-in;
+}
+
+.about-utensils {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.left-utensil {
+  left: 2vw;
+}
+.right-utensil {
+  right: 2vw;
+}
+
+/* Animación de entrada */
+.animate-utensil {
+  opacity: 0;
+  animation: utensil-fade-in 1.2s ease-out forwards;
+}
+.left-utensil.animate-utensil {
+  animation-name: utensil-slide-in-left;
+}
+.right-utensil.animate-utensil {
+  animation-name: utensil-slide-in-right;
+}
+
+@keyframes utensil-slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translate(-60px, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+@keyframes utensil-slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translate(60px, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+.about-utensils-crossed {
+  position: absolute;
+  width: 200px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  /* Para animación */
+  transform: scale(0.7) translateY(-50%);
+  transition: opacity 1s cubic-bezier(0.4,0,0.2,1), transform 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.animate-utensils.about-utensils-crossed {
+  opacity: 1;
+  transform: scale(1) translateY(-50%);
+}
+
+/* Nueva posición para los SVGs cruzados */
+.about-utensils-crossed.left {
+  left: 3vw;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.about-utensils-crossed.right {
+  right: 3vw;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.utensil {
+  position: absolute;
+  width: 200px;
+  height: 400px;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.fork {
+  transform: rotate(-35deg);
+  left: 0;
+}
+.spoon {
+  transform: rotate(35deg);
+  right: 0;
+}
+
+.animate-utensils .utensil {
+  opacity: 1;
+  animation: utensil-fade-in-crossed 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes utensil-fade-in-crossed {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(-35deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(-35deg);
+  }
+}
+.animate-utensils .spoon {
+  animation-delay: 0.2s;
+  animation-name: utensil-fade-in-crossed-spoon;
+}
+@keyframes utensil-fade-in-crossed-spoon {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) rotate(35deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(35deg);
+  }
+}
+
+.AboutContainer {
+  position: relative;
+  z-index: 3;
+}

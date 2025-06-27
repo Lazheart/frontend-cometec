@@ -1,0 +1,44 @@
+.f-container{
+    justify-content: space-between;
+    border-top: .5px solid rgba(0,0,0,0.148)
+}
+.f-left{
+    gap: 1rem;
+}
+
+.f-description{
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.6);
+    line-height: 1.5;
+}
+
+.f-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 0;
+}
+.f-menu{
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}
+.f-menu a {
+    transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+    display: inline-block;
+}
+.f-menu a:hover {
+    transform: scale(1.12);
+}
+@media (max-width: 768px) {
+    .f-container{
+        justify-content: center;
+    }
+    .f-container>div{
+        align-items: center!important;
+        text-align: center;
+    }
+    .f-right{
+        justify-content: center;
+    }
+}
