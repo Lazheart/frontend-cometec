@@ -1,6 +1,12 @@
 import RegisterCard  from "@/components/Register/RegisterCard.tsx";
+import { useEffect } from "react";
+import { removeToken } from "@/utils/token";
 
 const RegisterPage = () => {
+    useEffect(() => {
+        removeToken(); // Elimina el token/cookie al entrar a la página de registro
+    }, []);
+
     return (
         <div
             className="register min-h-screen flex flex-col items-center justify-center bg-cover bg-center relative"

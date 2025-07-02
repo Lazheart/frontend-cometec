@@ -6,9 +6,12 @@ const Header = () => {
     return (
          <section className="h-wrapper">
              <div className="flexCenter paddings innerWidth h-container">
-                    <Link to = "/">
-                         <img src={Variante1} alt="LogoCometec" width={100} ></img>
-                     </Link>
+                    <div className="h-logo-dashboard">
+                        <Link to = "/" className="h-logo-link">
+                            <img src={Variante1} alt="LogoCometec" width={100} ></img>
+                        </Link>
+                        <a href="/dashboard" className="h-dashboard-link">Dashboard</a>
+                    </div>
                      <div className="h-menu">
                          <a href="#about" >Sobre Nosotros</a>
                          <Link to="/login">
@@ -29,4 +32,3 @@ const Header = () => {
 };
 
 export default Header;
-

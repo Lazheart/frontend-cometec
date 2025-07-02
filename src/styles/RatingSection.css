@@ -1,0 +1,46 @@
+.rating-section-card {
+  /* Corresponds to Rectangle 61 */
+  background: #FFFFFF;
+  border-radius: 50px;
+  padding: 40px; /* Adjust padding */
+  text-align: center;
+  box-sizing: border-box; /* Include padding in width/height */
+  height: 461px; /* Fixed height from Rectangle 61 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Consistent shadow */
+  width: 100%; /* Ensure it fills its container */
+}
+
+.rating-section-title {
+  /* Corresponds to Calificación */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 48px;
+  line-height: 58px;
+  color: #F66405;
+  margin-bottom: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rating-section-title {
+    font-size: 36px;
+    line-height: 45px;
+  }
+  .rating-section-card {
+    height: auto; /* Allow height to adjust */
+    padding: 20px;
+    border-radius: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rating-section-title {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}

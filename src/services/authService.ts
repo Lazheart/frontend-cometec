@@ -1,5 +1,5 @@
 import api from './api';
-import type {LoginPayload, LoginResponse, RegisterPayload, RegisterResponse} from '../interfaces/Auth';
+import type {LoginPayload, LoginResponse, RegisterPayload, RegisterResponse, RecoveryPayload, RecoveryResponse, UserSecurityUpdatePayload, UserSecurityUpdateResponse} from '../interfaces/Auth';
 import { setToken } from '../utils/token';
 
 export const login = async (data: LoginPayload): Promise<LoginResponse> => {
@@ -19,14 +19,15 @@ export const register = async (data: RegisterPayload): Promise<RegisterResponse>
         ...data,
         role: "USER"
     });
+    return response.data;
+};
 
-    // Si quieres login automático después del registro, descomenta lo siguiente:
-    /*
-    const { token } = response.data;
-    if (token) {
-      setToken(token);
-    }
-    */
+export const recovery = async (data: RecoveryPayload): Promise<RecoveryResponse> => {
+    const response = await api.post<RecoveryResponse>("/auth/recovery", data);
+    return response.data;
+};
 
+export const updateUserSecurity = async (data: UserSecurityUpdatePayload): Promise<UserSecurityUpdateResponse> => {
+    const response = await api.patch<UserSecurityUpdateResponse>("/user/security/me", data);
     return response.data;
 };

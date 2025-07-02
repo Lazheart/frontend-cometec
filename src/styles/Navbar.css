@@ -1,0 +1,36 @@
+.nav-wrapper{
+    background-color: #ffffff;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 1rem;
+}
+
+/* Estilo del SearchBar */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #e5e7eb; /* Tailwind: bg-gray-200 */
+    border-radius: 9999px;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.search-icon {
+    color: #f87000;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    color: #1f2937; /* Tailwind: text-gray-800 */
+    font-size: 1rem;
+}

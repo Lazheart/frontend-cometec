@@ -21,6 +21,27 @@ export interface RegisterResponse {
     token: string;
 }
 
+export interface RecoveryPayload {
+    email: string;
+    name: string;
+    lastname: string;
+    phone: string;
+}
 
-//se puede mejorar auth pq tanto login como register devuelven un token
-//(me da weba hacerlo)
+
+export interface RecoveryResponse {
+    message: string;
+}
+
+export interface UserSecurityUpdatePayload {
+    name: string;
+    lastname: string;
+    email: string;
+    phone: string;
+    code: string;
+    newPassword: string;
+}
+
+export interface UserSecurityUpdateResponse {
+    message: string;
+}

@@ -10,15 +10,18 @@ const HomePage = () => {
         <div>
             <Header/>
             <Hero/>
-            <Companies />
-            <About />
+            <div className="bg-white w-full">
+                <Companies />
+            </div>
+            <div className="bg-gray-100 w-full">
+                <About />
+            </div>
             <JoinUs/>
-            <Footer/>
+            <div className="bg-white w-full">
+                <Footer/>
+            </div>
         </div>
     );
 };
 
 export default HomePage;
-
-
-

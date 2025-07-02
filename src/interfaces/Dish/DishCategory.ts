@@ -1,0 +1,1 @@
+export type DishCategory = "Entradas" | "platoDeFondo" | "Postres" | "Bebidas" | "Adicionales" | "OTHER";

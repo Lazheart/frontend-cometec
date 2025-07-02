@@ -1,0 +1,166 @@
+.usercard-outer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.usercard-main-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  border: 1.5px solid #ffe0b2;
+  width: 100%;
+  max-width: 820px;
+  min-width: 420px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: none;
+}
+
+.usercard-wide {
+  max-width: 820px;
+  min-width: 420px;
+}
+
+.usercard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 2.5rem 3.5rem 1.5rem 3.5rem;
+}
+
+.usercard-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.usercard-label {
+  color: #ff6600;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.usercard-input {
+  border: 1.5px solid #ffe0b2;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: #fff7ed;
+  color: #ff6600;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: box-shadow 0.2s;
+  box-shadow: 0 1px 4px 0 #ffecd2;
+  margin-bottom: 0.1rem;
+}
+
+.usercard-value {
+  background: #ff6600;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.08rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 1px 4px 0 #ffecd2;
+  letter-spacing: 0.01em;
+}
+
+.usercard-input-locked {
+  background: #fff3e0;
+  color: #bdbdbd;
+  border-style: dashed;
+}
+
+.usercard-lock {
+  color: #bdbdbd;
+  font-size: 1.1em;
+}
+
+.usercard-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem 0 1.2rem 0;
+  border-top: 1px solid #ffe0b2;
+  margin-top: 0.5rem;
+}
+
+.usercard-footer-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2.5rem 1.2rem 2.5rem;
+  border-top: 1px solid #ffe0b2;
+  margin-top: 0.5rem;
+  background: transparent;
+}
+
+.usercard-footer-label {
+  color: #ff6600;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.usercard-footer-value {
+  color: #222;
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.usercard-cred-btn {
+  background: none;
+  border: none;
+  color: #ff6600;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-left: 1rem;
+  padding: 0;
+}
+
+.usercard-cred-btn:hover {
+  color: #111;
+  text-decoration: underline;
+  background: none;
+  transform: none;
+}
+
+.profile-edit-icon {
+  position: absolute;
+  top: 10px;
+  right: -18px;
+  background: #fff;
+  color: #ff6600;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px 0 #ffecd2;
+  padding: 0.4rem;
+  cursor: pointer;
+  z-index: 10;
+  border: 2px solid #ff6600;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-edit-icon:hover {
+  background: #ff6600;
+  color: #fff;
+}
+
+.profile-title {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1.2rem;
+  text-align: center;
+  letter-spacing: 0.01em;
+}

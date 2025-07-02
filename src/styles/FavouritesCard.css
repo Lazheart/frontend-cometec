@@ -1,0 +1,101 @@
+.favourites-section {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  padding: 2rem 0 1rem 0;
+}
+
+.favourites-row {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.favourites-loading,
+.favourites-error,
+.favourites-empty {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+  margin: 2rem 0;
+  font-weight: 600;
+}
+
+.favourites-loadmore {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px 0 #ffecd2;
+}
+
+.favourites-loadmore:hover {
+  background: #e65c00;
+  box-shadow: 0 4px 16px 0 #ffecd2;
+}
+
+.favourites-card {
+  width: 300px;
+  background: #fff;
+  color: #ff6600;
+  border-radius: 1rem;
+  padding: 1.5rem 1.2rem;
+  box-shadow: 0 2px 12px 0 #ffecd2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.favourites-card:hover {
+  box-shadow: 0 6px 24px 0 #ffecd2;
+}
+
+.favourites-card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ff6600;
+}
+
+.favourites-card-category {
+  font-size: 1rem;
+  color: #ff6600;
+  font-weight: 600;
+}
+
+.favourites-card-location {
+  font-size: 0.9rem;
+  color: #bdbdbd;
+}
+
+.favourites-empty-btn {
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.7rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 1px 4px 0 #ffecd2;
+  transition: background 0.2s, color 0.2s;
+}
+
+.favourites-empty-btn:hover {
+  background: #e65c00;
+  color: #fff;
+}
+

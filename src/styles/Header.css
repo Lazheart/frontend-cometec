@@ -16,3 +16,21 @@
     align-items: center;
     gap: 1rem;
 }
+
+.h-logo-dashboard {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.h-dashboard-link {
+    font-weight: 500;
+    font-size: 1.1rem;
+    color: #ff851c;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.h-dashboard-link:hover {
+    color: #111;
+}

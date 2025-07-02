@@ -1,0 +1,272 @@
+/* Global styles for the page */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif; /* Apply Inter font globally */
+    background-color: #F66405; /* Main background color from Rectangle 58 */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.restaurant-page-container {
+    background: #F66405; /* Rectangle 58 */
+    min-height: 100vh; /* Ensure it takes full viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    padding-bottom: 50px; /* Space for footer */
+    box-sizing: border-box;
+    width: 100%; /* Ensure it takes full width */
+}
+
+.top-section {
+    width: 100%;
+    max-width: 1911px; /* Max width from your CSS (Group 5, Rectangle 59/65) */
+    /* Navbar is assumed to be fixed or handled by its own positioning */
+    margin-top: 98px; /* Space below Navbar (Rectangle 35 height) */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Hide overflow from image carousel */
+}
+
+.restaurant-name-overlay {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    z-index: 10; /* Ensure it's above the image */
+    width: 855px; /* From Rectangle 60/61, adjusted for name container */
+    max-width: 90%; /* Responsive adjustment */
+    background: #FFFFFF; /* Rectangle 60/61 background */
+    border-radius: 50px; /* Rectangle 60/61 border-radius */
+    padding: 20px 40px; /* Adjust padding as needed */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+}
+
+.content-section {
+    width: 100%;
+    max-width: 1804px; /* Rectangle 64 width */
+    background: #FFFFFF; /* Rectangle 64 background */
+    border-radius: 60px; /* Rectangle 64 border-radius */
+    padding: 50px; /* Adjust padding as needed */
+    margin-top: -100px; /* Overlap with the image slightly as per image */
+    position: relative;
+    z-index: 5; /* Ensure it's above the image carousel but below navbar */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Stronger shadow for main content block */
+}
+
+.comments-ratings-section {
+    display: flex;
+    justify-content: space-around; /* Distribute space between comments and ratings */
+    gap: 50px; /* Space between the two main blocks */
+    margin-bottom: 50px;
+    width: 100%; /* Take full width of content-section */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.comments-block {
+    flex: 1; /* Take up available space */
+    min-width: 400px; /* Minimum width before wrapping */
+    max-width: 855px; /* From Rectangle 60 */
+    background: #FFFFFF; /* Rectangle 60 background */
+    border-radius: 50px; /* Rectangle 60 border-radius */
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content inside */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.rating-block {
+    flex: 1; /* Take up available space */
+    min-width: 300px; /* Minimum width before wrapping */
+    max-width: 855px; /* From Rectangle 61 */
+    background: #FFFFFF; /* Rectangle 61 background */
+    border-radius: 50px; /* Rectangle 61 border-radius */
+    padding: 0; /* RatingSection handles its own padding */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+    /* Styles for Comentarios / Calificación titles */
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 58px;
+    color: #F66405;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between individual comment cards */
+    width: 100%; /* Ensure comments take full width of their block */
+}
+
+.menu-title {
+    /* Styles for Menu */
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 116px;
+    color: #F66405;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.category-filter-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    width: 100%;
+    max-width: 1634px; /* Align with your CategoryFilter container */
+    padding: 0 20px; /* Add some horizontal padding */
+    box-sizing: border-box;
+}
+
+.category-button {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.category-button:hover {
+    background-color: #e0e0e0;
+    border-color: #c0c0c0;
+    transform: translateY(-2px);
+}
+
+.category-button.active {
+    background-color: #F66405; /* Your brand orange */
+    color: #FFFFFF;
+    border-color: #F66405;
+    box-shadow: 0 4px 8px rgba(246, 100, 5, 0.3);
+    transform: translateY(0);
+}
+
+.menu-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Responsive grid */
+    gap: 40px; /* Space between menu item cards */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center; /* Center items in the grid */
+}
+
+.loading-state, .error-state, .no-data-state, .no-data-message {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #666;
+    margin-top: 50px;
+    width: 100%;
+}
+
+.error-state {
+    color: #d9534f; /* Red for errors */
+    font-weight: bold;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1200px) {
+    .comments-ratings-section {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .comments-block, .rating-block {
+        width: 90%; /* Adjust width for smaller screens */
+        max-width: 700px; /* Limit max width for readability */
+    }
+    .menu-items-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        padding: 20px;
+        margin-top: -50px;
+        border-radius: 30px; /* Smaller border radius */
+    }
+    .section-title, .menu-title {
+        font-size: 36px;
+        line-height: 45px;
+    }
+    .restaurant-name-overlay {
+        width: 90%;
+        max-width: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+    }
+    .menu-items-grid {
+        grid-template-columns: 1fr; /* Single column on very small screens */
+        gap: 25px;
+    }
+    .category-filter-wrapper {
+        gap: 10px;
+        margin: 20px 0;
+    }
+    .category-button {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section {
+        padding: 15px;
+        margin-top: -30px;
+        border-radius: 20px;
+    }
+    .section-title, .menu-title {
+        font-size: 28px;
+        line-height: 35px;
+        margin-bottom: 20px;
+    }
+    .comments-block, .rating-block {
+        padding: 20px;
+        border-radius: 30px;
+    }
+    .menu-items-grid {
+        padding: 10px;
+    }
+    .category-filter-wrapper {
+        flex-direction: column; /* Stack buttons vertically on very small screens */
+        align-items: center;
+        gap: 8px;
+    }
+    .category-button {
+        width: 80%; /* Make buttons wider */
+        max-width: 250px;
+    }
+}

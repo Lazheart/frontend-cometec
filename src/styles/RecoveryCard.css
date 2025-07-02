@@ -1,0 +1,25 @@
+.recovery-bg {
+  background: linear-gradient(135deg, #ff9800 0%, #ffb74d 100%);
+  min-height: 100vh;
+  width: 100vw;
+}
+
+.recovery-card-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recovery-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+
+.btn-recovery {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+}
+

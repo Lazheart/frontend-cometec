@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getToken, isTokenExpired, removeToken } from "@/utils/token";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:3000",
+    baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:8080",
 });
 
 api.interceptors.request.use(
@@ -11,7 +11,6 @@ api.interceptors.request.use(
     if (token) {
       if (isTokenExpired(token)) {
         removeToken();
-        // Opcional: puedes redirigir al login aquí si tienes acceso a navigate
         throw new Error("Token expirado. Por favor, inicia sesión de nuevo.");
       }
       config.headers = config.headers || {};

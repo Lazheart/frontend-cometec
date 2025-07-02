@@ -1,0 +1,32 @@
+.stars-container {
+  display: flex;
+  justify-content: center; /* Center the stars */
+  align-items: center;
+  gap: 10px; /* Space between stars */
+}
+
+.star-icon {
+  font-size: 60px; /* Adjust size as per your design */
+  /* These colors correspond to your CSS for filled/empty stars */
+}
+
+.star-icon.filled {
+  color: #F66405; /* M3/sys/light/on-surface */
+}
+
+.star-icon.empty {
+  color: #1E1E1E; /* Border color for empty stars */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .star-icon {
+    font-size: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .star-icon {
+    font-size: 35px;
+  }
+}

@@ -1,0 +1,27 @@
+.restaurant-name-heading {
+  /* Corresponds to the first "Nombre" text in your CSS */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 48px;
+  line-height: 58px;
+  color: #F66405;
+  text-align: center;
+  z-index: 10; /* Ensure it's above the image carousel if positioned over it */
+  position: relative; /* Allows z-index to work */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .restaurant-name-heading {
+    font-size: 36px;
+    line-height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .restaurant-name-heading {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}

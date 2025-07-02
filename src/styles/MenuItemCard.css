@@ -1,0 +1,145 @@
+.menu-item-card {
+  /* Corresponds to Rectangle 67, 68, 69, 70 */
+  background: #F66405;
+  border-radius: 50px;
+  padding: 30px; /* Adjust padding */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+  min-height: 505px; /* From your CSS, ensure content fits */
+  max-width: 773px; /* From your CSS, for individual card */
+  margin: auto; /* Center individual cards in the grid cells */
+  box-sizing: border-box;
+  color: #FFFFFF; /* Text color for content within this card */
+}
+
+.menu-item-image {
+  width: 100%;
+  height: 200px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: 20px; /* Slightly less rounded than the card */
+  margin-bottom: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Shadow for image */
+}
+
+.menu-item-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow details to take up remaining space */
+}
+
+.menu-item-name {
+  /* Corresponds to Nombre for menu items */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 38px; /* Adjusted for better readability */
+  line-height: 48px;
+  margin-bottom: 5px;
+}
+
+.menu-item-price {
+  /* Corresponds to Precio */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 30px; /* Adjusted as needed */
+  line-height: 38px;
+  margin-bottom: 10px;
+}
+
+.menu-item-description {
+  /* Corresponds to Descripción */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: normal; /* Descriptions are usually not bold */
+  font-size: 20px; /* Adjusted as needed */
+  line-height: 28px;
+  margin-bottom: 10px;
+  flex-grow: 1; /* Allow description to take up available space */
+}
+
+.menu-item-category {
+  /* Corresponds to Categoria for menu items */
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600; /* Slightly bold */
+  font-size: 18px; /* Adjusted as needed */
+  line-height: 24px;
+  opacity: 0.9; /* Make it slightly less prominent */
+  margin-top: 10px; /* Space from description */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .menu-item-name {
+    font-size: 32px;
+    line-height: 40px;
+  }
+  .menu-item-price {
+    font-size: 26px;
+    line-height: 34px;
+  }
+  .menu-item-description {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .menu-item-category {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-item-card {
+    padding: 20px;
+    min-height: auto; /* Allow height to adjust on smaller screens */
+    border-radius: 30px;
+  }
+  .menu-item-image {
+    height: 180px;
+  }
+  .menu-item-name {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  .menu-item-price {
+    font-size: 22px;
+    line-height: 28px;
+  }
+  .menu-item-description {
+    font-size: 16px;
+    line-height: 22px;
+  }
+  .menu-item-category {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-item-card {
+    padding: 15px;
+    gap: 10px;
+  }
+  .menu-item-image {
+    height: 150px;
+  }
+  .menu-item-name {
+    font-size: 24px;
+    line-height: 30px;
+  }
+  .menu-item-price {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .menu-item-description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .menu-item-category {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
