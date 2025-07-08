@@ -3,7 +3,7 @@ import { getRestaurantsByCategory } from "@/services/Restaurant/getRestaurantsBy
 import type { RestaurantCategory } from "@/interfaces/Restaurant/RestaurantCategory";
 import type { RestaurantSummaryDto } from "@/interfaces/Restaurant/RestaurantSummaryDto";
 import { RestaurantItem } from "./RestaurantItem";
-import { Card, CardContent , CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import '@/styles/RestaurantItem.css'
 
 
