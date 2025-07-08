@@ -5,6 +5,8 @@ import Companies from "../components/Home/Companies.tsx";
 import Footer from "../components/Home/Footer.tsx";
 import JoinUs from "../components/Home/JoinUs.tsx";
 
+
+
 const HomePage = () => {
     return (
         <div>

@@ -9,10 +9,13 @@ import { FiEdit2 } from "react-icons/fi"
 import { useNavigate } from "react-router-dom"
 
 interface Props {
-    user: UserResponseDto
+    user: UserResponseDto,
+    onEditData: () => void,
+    onEditMail: () => void,
+    onEditPass: () => void
 }
 
-export const ProfilePageLayout = ({ user }: Props) => {
+export const ProfilePageLayout = ({ user, onEditData, onEditMail, onEditPass }: Props) => {
     const navigate = useNavigate();
     return (
         <div className="flex flex-col items-center w-full min-h-screen bg-[#ff6600] text-white">
@@ -28,7 +31,7 @@ export const ProfilePageLayout = ({ user }: Props) => {
                     <h2 className="profile-title">Mi perfil</h2>
                 </div>
                 <div className="flex flex-col items-center gap-4 w-full max-w-3xl">
-                    <UserProfileCard user={user} />
+                    <UserProfileCard user={user} onEditData={onEditData} onEditMail={onEditMail} onEditPass={onEditPass} />
                 </div>
             </div>
             {/* Separación visual entre secciones */}
