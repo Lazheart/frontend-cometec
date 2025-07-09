@@ -45,7 +45,9 @@ const LoginCard = () => {
                 setError("Credenciales inválidas");
             } else if (status === 500 || status === 503) {
                 setError("El servidor no está disponible. Intenta más tarde.");
-            } else {
+            } else if(status == 404) {
+                setError("Cuenta inexistente.");
+            }else {
                 setError("Hubo un error. Intenta de nuevo.");
             }
         } finally {

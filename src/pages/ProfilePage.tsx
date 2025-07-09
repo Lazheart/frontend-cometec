@@ -41,7 +41,7 @@ const ProfilePage = () => {
           style={{
             position: "fixed",
             inset: 0,
-            background: "white",
+            background: "rgba(255,255,255,0.7)", // Cambiado a blanco translúcido
             zIndex: 50,
             display: "flex",
             alignItems: "center",
@@ -58,3 +58,4 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
+

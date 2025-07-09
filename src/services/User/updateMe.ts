@@ -1,13 +1,7 @@
 import Api from "@/services/api";
-
-export interface UpdateMePayload {
-  name: string;
-  lastname: string;
-  phone: string;
-}
+import type { UpdateMePayload } from "@/interfaces/User/UpdateMePayload";
 
 export async function updateMe(data: UpdateMePayload) {
-  const res = await Api.put("/user/update/me", data);
+  const res = await Api.patch("/user/update/me", data);
   return res.data;
 }
-
