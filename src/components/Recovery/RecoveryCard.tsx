@@ -2,8 +2,7 @@ import "../../styles/RecoveryCard.css"
 import { Card, CardTitle } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import React, { useState } from "react";
-import { recovery, updateUserSecurity } from "@/services/authService.ts";
-import type { UserSecurityUpdatePayload } from "@/interfaces/Auth";
+import { recovery, verifyRecoveryCode, resetPassword } from "@/services/authService.ts";
 import { Link} from "react-router-dom";
 import LogoCometec from "@/assets/LogoCometec.png";
 
@@ -11,15 +10,12 @@ import LogoCometec from "@/assets/LogoCometec.png";
 
 const RecoveryCard = () => {
     const [form, setForm] = useState({
-        email: "",
-        name: "",
-        lastname: "",
-        phone: ""
+        email: ""
     });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
-    const [step, setStep] = useState<1 | 2 | 3>(1); // 1: datos, 2: código y nueva pass, 3: éxito
+    const [step, setStep] = useState<1 | 2 | 3 | 4>(1); // 1: correo, 2: código, 3: nueva pass, 4: éxito
     const [code, setCode] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -44,7 +40,22 @@ const RecoveryCard = () => {
                 setLoading(false);
             }
         } else if (step === 2) {
-            if (!code || !newPassword || !confirmPassword) {
+            if (!code) {
+                setError("Ingresa el código de seguridad.");
+                setLoading(false);
+                return;
+            }
+            try {
+                const res = await verifyRecoveryCode(form.email, code);
+                setSuccess(res.message || "Código verificado correctamente.");
+                setStep(3);
+            } catch {
+                setError("El código es incorrecto o expiró.");
+            } finally {
+                setLoading(false);
+            }
+        } else if (step === 3) {
+            if (!newPassword || !confirmPassword) {
                 setError("Completa todos los campos.");
                 setLoading(false);
                 return;
@@ -55,14 +66,9 @@ const RecoveryCard = () => {
                 return;
             }
             try {
-                const payload: UserSecurityUpdatePayload = {
-                    ...form,
-                    code,
-                    newPassword
-                };
-                const res = await updateUserSecurity(payload);
+                const res = await resetPassword(form.email, code, newPassword);
                 setSuccess(res.message);
-                setStep(3);
+                setStep(4);
             } catch {
                 setError("Error al cambiar la contraseña. Intenta de nuevo.");
             } finally {
@@ -81,39 +87,13 @@ const RecoveryCard = () => {
                     </Link>
                 </div>
                 <div className="mb-2 text-gray-500 text-sm text-center">
-                    {step === 1 && "Ingresa tus datos para recuperar tu cuenta"}
-                    {step === 2 && "Ingresa el código de seguridad y tu nueva contraseña"}
-                    {step === 3 && "¡Listo!"}
+                    {step === 1 && "Ingresa tu correo electrónico para recuperar tu cuenta"}
+                    {step === 2 && "Ingresa el código de seguridad enviado a tu correo"}
+                    {step === 3 && "Ingresa tu nueva contraseña"}
+                    {step === 4 && "¡Listo!"}
                 </div>
                 {step === 1 && (
                     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                        <Input
-                            type="text"
-                            name="name"
-                            placeholder="Nombre"
-                            value={form.name}
-                            onChange={handleChange}
-                            className="register-input"
-                            required
-                        />
-                        <Input
-                            type="text"
-                            name="lastname"
-                            placeholder="Apellido"
-                            value={form.lastname}
-                            onChange={handleChange}
-                            className="register-input"
-                            required
-                        />
-                        <Input
-                            type="tel"
-                            name="phone"
-                            placeholder="Teléfono"
-                            value={form.phone}
-                            onChange={handleChange}
-                            className="register-input"
-                            required
-                        />
                         <Input
                             type="email"
                             name="email"
@@ -145,6 +125,19 @@ const RecoveryCard = () => {
                             className="register-input"
                             required
                         />
+                        {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+                        {success && <div className="text-green-600 text-sm text-center">{success}</div>}
+                        <button
+                            type="submit"
+                            className="register-btn mt-2"
+                            disabled={loading}
+                        >
+                            {loading ? "Verificando..." : "Verificar código"}
+                        </button>
+                    </form>
+                )}
+                {step === 3 && (
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                         <Input
                             type="password"
                             name="newPassword"
@@ -174,7 +167,7 @@ const RecoveryCard = () => {
                         </button>
                     </form>
                 )}
-                {step === 3 && (
+                {step === 4 && (
                     <div className="flex flex-col items-center gap-4">
                         <div className="text-green-600 text-lg font-semibold">¡Contraseña cambiada correctamente!</div>
                         <div className="text-gray-500 text-sm text-center">Ya puedes iniciar sesión con tu nueva contraseña.</div>

@@ -23,9 +23,6 @@ export interface RegisterResponse {
 
 export interface RecoveryPayload {
     email: string;
-    name: string;
-    lastname: string;
-    phone: string;
 }
 
 
@@ -44,4 +41,10 @@ export interface UserSecurityUpdatePayload {
 
 export interface UserSecurityUpdateResponse {
     message: string;
+}
+
+export interface ResetPasswordPayload {
+    email: string;
+    code: string;
+    newPassword: string;
 }
