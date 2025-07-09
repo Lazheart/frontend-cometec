@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { RestaurantItem } from "@/components/Restaurant/RestaurantItem";
+import { RegisterRestaurantCard } from "@/components/Restaurant/RegisterRestaurantCard"; // importa aquí
 import type { RestaurantSummaryDto } from "@/interfaces/Restaurant/RestaurantSummaryDto";
 import Api from "@/services/api";
 import "@/styles/OwnerRestaurantCard.css";
@@ -18,6 +19,7 @@ const OwnedRestaurantCard = () => {
   const [error, setError] = useState<string | null>(null);
   const [showCount, setShowCount] = useState(PAGE_SIZE);
   const [ref, inView] = useInView<HTMLDivElement>();
+  const [showRegisterCard, setShowRegisterCard] = useState(false); // NUEVO
 
   useEffect(() => {
     fetchOwnedRestaurants()
@@ -28,16 +30,22 @@ const OwnedRestaurantCard = () => {
 
   if (loading) return <div className="owner-restaurants-loading">Cargando...</div>;
   if (error) return <div className="owner-restaurants-error">No se pudo cargar tus restaurantes</div>;
+
   if (!restaurants.length) return (
     <div ref={ref} className={`owner-restaurants-empty${inView ? " animate" : ""}`}>
       <p className="owner-restaurants-question">¿Tienes un restaurante?</p>
-      <button className="owner-restaurants-register-btn" onClick={() => window.location.href = '/register-restaurant'}>
+      <button
+        className="owner-restaurants-register-btn"
+        onClick={() => setShowRegisterCard(true)} // cambia la visibilidad del card
+      >
         Regístrate ahora
       </button>
+      {showRegisterCard && (
+        <RegisterRestaurantCard onClose={() => setShowRegisterCard(false)} />
+      )}
     </div>
   );
 
-  // Distribución 2x2
   const visibleRestaurants = restaurants.slice(0, showCount);
   const rows = [];
   for (let i = 0; i < visibleRestaurants.length; i += 2) {
