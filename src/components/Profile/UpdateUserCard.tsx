@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 import type { UserResponseDto } from "@/interfaces/User/UserResponseDto";
 import { updateMe } from "@/services/User/updateMe";
+import "@/styles/UpdateUserCard.css";
 
 interface Props {
   user: UserResponseDto;
@@ -40,44 +41,45 @@ const UpdateUserCard: React.FC<Props> = ({ user, onClose }) => {
   };
 
   return (
-    <div className="usercard-modal-bg">
-      <Card className="usercard-modal">
-        <CardContent>
-          <h3 className="text-lg font-semibold mb-2">Modificar datos</h3>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-            <Input
-              name="name"
-              placeholder="Nombre"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              name="lastname"
-              placeholder="Apellido"
-              value={form.lastname}
-              onChange={handleChange}
-              required
-            />
-            <Input
-              name="phone"
-              placeholder="Teléfono"
-              value={form.phone}
-              onChange={handleChange}
-              required
-            />
-            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
-            {success && <div className="text-green-600 text-sm text-center">{success}</div>}
-            <div className="flex gap-2 mt-2">
-              <button type="button" className="usercard-cancel-btn" onClick={onClose} disabled={loading}>Cancelar</button>
-              <button type="submit" className="usercard-save-btn" disabled={loading}>
-                {loading ? "Guardando..." : "Guardar"}
-              </button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+    <Card className="update-user-card">
+      <CardContent className="p-0">
+        <h3 className="profile-title update-user-title">Modificar datos</h3>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <Input
+            name="name"
+            placeholder="Nombre"
+            value={form.name}
+            onChange={handleChange}
+            required
+            className="input-update-user"
+          />
+          <Input
+            name="lastname"
+            placeholder="Apellido"
+            value={form.lastname}
+            onChange={handleChange}
+            required
+            className="input-update-user"
+          />
+          <Input
+            name="phone"
+            placeholder="Teléfono"
+            value={form.phone}
+            onChange={handleChange}
+            required
+            className="input-update-user"
+          />
+          {error && <div className="text-red-500 text-sm text-center">{error}</div>}
+          {success && <div className="text-green-600 text-sm text-center">{success}</div>}
+          <div className="update-user-btns">
+            <button type="button" className="btn-cancel-update-user" onClick={onClose} disabled={loading}>Cancelar</button>
+            <button type="submit" className="btn-update-user" disabled={loading}>
+              {loading ? "Guardando..." : "Guardar"}
+            </button>
+          </div>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
 

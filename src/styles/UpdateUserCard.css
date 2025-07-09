@@ -1,0 +1,88 @@
+/* Contenedor centrado */
+.update-user-card-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+/* Animación similar a RecoveryCard */
+@keyframes update-card-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Tarjeta principal */
+.update-user-card {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem 2.5rem;
+  max-width: 400px;
+  width: 100%;
+  animation: update-card-fade-in 0.7s cubic-bezier(.39,.575,.565,1.000);
+}
+
+/* Botones */
+.btn-update-user, .btn-cancel-update-user {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  min-width: 110px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-update-user {
+  background: #ff9800;
+  color: #fff;
+}
+.btn-update-user:hover {
+  background: #fb8c00;
+}
+.btn-cancel-update-user {
+  background: #e0e0e0;
+  color: #333;
+}
+.btn-cancel-update-user:hover {
+  background: #bdbdbd;
+}
+
+/* Centrar los botones */
+.update-user-btns {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/* Estilos para inputs */
+.input-update-user {
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background: #fafafa;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+.input-update-user:focus {
+  border: 1.5px solid #ff9800;
+  outline: none;
+  background: #fff;
+  box-shadow: 0 0 0 2px #ffe0b2;
+}
+
+/* Estilo para el título 'Modificar datos' */
+.update-user-title {
+  color: #111 !important;
+  margin-bottom: 1.1rem;
+}
