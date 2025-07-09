@@ -4,7 +4,7 @@ import { ProfilePageLayout } from "@/components/Profile/ProfilePageLayout"
 import type { UserResponseDto } from "@/interfaces/User/UserResponseDto"
 import UpdateUserCard from "@/components/Profile/UpdateUserCard"
 import UpdateMailCard from "@/components/Profile/UpdateMailCard"
-import RecoveryCard from "@/components/Recovery/RecoveryCard"
+import UpdatePasswordCard from "@/components/Profile/UpdatePasswordCard"
 
 const ProfilePage = () => {
   const [user, setUser] = useState<UserResponseDto | null>(null)
@@ -50,7 +50,7 @@ const ProfilePage = () => {
         >
           {showEdit && <UpdateUserCard user={user} onClose={closeAll} />}
           {showMail && <UpdateMailCard user={user} onClose={closeAll} />}
-          {showPass && <RecoveryCard />}
+          {showPass && <UpdatePasswordCard onClose={closeAll} />}
         </div>
       )}
     </div>
@@ -58,4 +58,3 @@ const ProfilePage = () => {
 }
 
 export default ProfilePage
-
