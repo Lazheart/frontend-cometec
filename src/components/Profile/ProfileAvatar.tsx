@@ -2,7 +2,7 @@ import React from "react"
 
 type Props = {
     imageUrl?: string
-    size?: number // Tamaño en px
+    size?: number
 }
 
 export const ProfileAvatar: React.FC<Props> = ({ imageUrl, size = 128 }) => {
