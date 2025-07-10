@@ -11,7 +11,7 @@ interface Props {
 
 export const CategoryListInfinite: React.FC<Props> = ({ category, title }) => {
   const [restaurants, setRestaurants] = useState<RestaurantSummaryDto[]>([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);

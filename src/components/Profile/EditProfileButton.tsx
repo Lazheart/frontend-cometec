@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { useRef } from "react"
+import React, { useRef } from "react"
 import { updateProfileImage } from "@/services/User/updateProfileImage"
 
 export const EditProfileButton = () => {
