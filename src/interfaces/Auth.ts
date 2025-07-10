@@ -43,8 +43,8 @@ export interface UserSecurityUpdateResponse {
     message: string;
 }
 
-export interface ResetPasswordPayload {
-    email: string;
-    code: string;
-    newPassword: string;
-}
+// export interface ResetPasswordPayload {
+//     email: string;
+//     code: string;
+//     newPassword: string;
+// }

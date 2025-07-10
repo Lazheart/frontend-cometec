@@ -18,7 +18,9 @@ const ProfilePage = () => {
 
   const handleEditData = () => setShowEdit(true)
   const handleEditMail = () => setShowMail(true)
-  const handleEditPass = () => setShowPass(true)
+  const handleEditPass = () => {
+    setShowPass(true)
+  }
   const closeAll = () => {
     setShowEdit(false)
     setShowMail(false)

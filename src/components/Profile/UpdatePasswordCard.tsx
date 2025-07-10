@@ -5,23 +5,20 @@ import React, { useState } from "react";
 import { recovery, verifyRecoveryCode, resetPassword } from "@/services/authService.ts";
 import LogoCometec from "@/assets/LogoCometec.png";
 
-
-
 interface Props {
     onClose: () => void;
 }
 
 const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
-    const [form, setForm] = useState({
-        email: ""
-    });
+    const [form, setForm] = useState({ email: "" });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const [step, setStep] = useState<1 | 2 | 3 | 4>(1); // 1: correo, 2: código, 3: nueva pass, 4: éxito
-    const [code, setCode] = useState("");
+    const [codeState, setCodeState] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [isCodeVerified, setIsCodeVerified] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,10 +26,10 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
         setError("");
         setSuccess("");
         if (step === 1) {
+            setLoading(true);
             try {
                 const res = await recovery(form);
                 setSuccess(res.message || "Te enviamos un código de seguridad a tu correo.");
@@ -42,41 +39,70 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
             } finally {
                 setLoading(false);
             }
-        } else if (step === 2) {
-            if (!code) {
-                setError("Ingresa el código de seguridad.");
-                setLoading(false);
-                return;
-            }
-            try {
-                const res = await verifyRecoveryCode(form.email, code);
-                setSuccess(res.message || "Código verificado correctamente.");
+        }
+    };
+
+    // Nuevo handler solo para verificar el código
+    const handleVerifyCode = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+        if (!codeState) {
+            setError("Ingresa el código de seguridad.");
+            return;
+        }
+        setLoading(true);
+        try {
+            const isValid = await verifyRecoveryCode(form.email, codeState);
+            if (isValid) {
+                setSuccess("Código verificado correctamente.");
+                setError("");
+                setIsCodeVerified(true);
                 setStep(3);
-            } catch {
-                setError("El código es incorrecto o expiró.");
-            } finally {
-                setLoading(false);
+            } else {
+                setError("Código incorrecto");
+                setIsCodeVerified(false);
+                setStep(2);
             }
-        } else if (step === 3) {
-            if (!newPassword || !confirmPassword) {
-                setError("Completa todos los campos.");
-                setLoading(false);
-                return;
-            }
-            if (newPassword !== confirmPassword) {
-                setError("Las contraseñas no coinciden.");
-                setLoading(false);
-                return;
-            }
-            try {
-                const res = await resetPassword(form.email, code, newPassword);
-                setSuccess(res.message);
+        } catch {
+            setError("Error al verificar el código");
+            setIsCodeVerified(false);
+            setStep(2);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleResetPassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+        setSuccess("");
+        setLoading(true);
+        if (!newPassword || !confirmPassword) {
+            setError("Completa todos los campos.");
+            setLoading(false);
+            return;
+        }
+        if (newPassword !== confirmPassword) {
+            setError("Las contraseñas no coinciden.");
+            setLoading(false);
+            return;
+        }
+        try {
+            const res = await resetPassword(form.email, codeState, newPassword);
+            if (res) {
+                setSuccess("¡Contraseña cambiada correctamente!");
                 setStep(4);
-            } catch {
-                setError("Error al cambiar la contraseña. Intenta de nuevo.");
-            } finally {
-                setLoading(false);
+                setTimeout(() => {
+                    onClose();
+                }, 2000);
+            } else {
+                setError("No se pudo cambiar la contraseña. Intenta de nuevo.");
             }
+        } catch {
+            setError("Error al cambiar la contraseña. Intenta de nuevo.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -94,7 +120,7 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
                     <div className="mb-2 text-gray-500 text-sm text-center">
                         {step === 1 && "Ingresa tu correo para cambiar tu contraseña"}
                         {step === 2 && "Ingresa el código de seguridad enviado a tu correo"}
-                        {step === 3 && "Ingresa tu nueva contraseña"}
+                        {step === 3 && isCodeVerified && "Ingresa tu nueva contraseña"}
                         {step === 4 && "¡Listo!"}
                     </div>
                     {step === 1 && (
@@ -120,15 +146,16 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
                         </form>
                     )}
                     {step === 2 && (
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                        <form onSubmit={handleVerifyCode} className="flex flex-col gap-3">
                             <Input
                                 type="text"
                                 name="code"
                                 placeholder="Código de seguridad"
-                                value={code}
-                                onChange={e => setCode(e.target.value)}
+                                value={codeState}
+                                onChange={e => setCodeState(e.target.value)}
                                 className="input-update-user"
                                 required
+                                disabled={loading}
                             />
                             {error && <div className="text-red-500 text-sm text-center">{error}</div>}
                             {success && <div className="text-green-600 text-sm text-center">{success}</div>}
@@ -141,8 +168,8 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
                             </button>
                         </form>
                     )}
-                    {step === 3 && (
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                    {step === 3 && isCodeVerified && (
+                        <form onSubmit={handleResetPassword} className="flex flex-col gap-3">
                             <Input
                                 type="password"
                                 name="newPassword"
@@ -178,7 +205,7 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
                             <div className="text-gray-500 text-sm text-center">Ya puedes iniciar sesión con tu nueva contraseña.</div>
                         </div>
                     )}
-                    {(step === 1 || step === 2 || step === 3) && (
+                    {(step === 1 || step === 2 || (step === 3 && isCodeVerified)) && (
                         <button
                             type="button"
                             className="btn-cancel-update-user bg-gray-300 text-gray-700 mt-2"
@@ -192,7 +219,6 @@ const UpdatePasswordCard: React.FC<Props> = ({ onClose }) => {
             </div>
         </div>
     );
-
 }
 
 export default UpdatePasswordCard;

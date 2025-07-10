@@ -32,12 +32,12 @@ export const updateUserSecurity = async (data: UserSecurityUpdatePayload): Promi
     return response.data;
 };
 
-export const verifyRecoveryCode = async (email: string, code: string): Promise<RecoveryResponse> => {
-    const response = await api.post<RecoveryResponse>(`/auth/verify-recovery-code?email=${encodeURIComponent(email)}`, { code });
+export const verifyRecoveryCode = async (email: string, code: string): Promise<boolean> => {
+    const response = await api.post<boolean>(`/auth/verify-recovery-code?email=${encodeURIComponent(email)}`, { code });
     return response.data;
 };
 
-export const resetPassword = async (email: string, code: string, newPassword: string): Promise<RecoveryResponse> => {
-    const response = await api.post<RecoveryResponse>(`/auth/reset-password?email=${encodeURIComponent(email)}`, { code, newPassword });
+export const resetPassword = async (email: string, code: string, newPassword: string): Promise<boolean> => {
+    const response = await api.post<boolean>(`/auth/reset-password?email=${encodeURIComponent(email)}`, { code, newPassword });
     return response.data;
 };
