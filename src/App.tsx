@@ -13,11 +13,12 @@ import ProfilePage from "./pages/ProfilePage.tsx"
 import { refreshCookieToken } from "@/utils/token";
 import ProtectedLayout from "@/components/ProtectedLayout";
 import RestaurantDetailPage from "@/pages/RestaurantDetailPage.tsx";
+import RestaurantSearchPage from "./pages/RestaurantSearchPage";
 
 export default function App() {
     const location = useLocation();
     useEffect(() => {
-        refreshCookieToken(); // Refresca el token en cada cambio de ruta
+        refreshCookieToken();
     }, [location]);
 
     return (
@@ -32,6 +33,7 @@ export default function App() {
                 <Route element={<PrivateRoute><ProtectedLayout /></PrivateRoute>}>
                     <Route path="/dashboard" element={<DashboardPage />} />
                     <Route path="/me" element={<ProfilePage />} />
+                    <Route path="/restaurants/search" element={<RestaurantSearchPage />} />
                     <Route path= "/restaurants/:id" element={ <RestaurantDetailPage/> } />
                 </Route>
             </Routes>
