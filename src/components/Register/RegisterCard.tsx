@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { register } from "@/services/authService.ts";
-import LogoCometec from "../../assets/LogoCometec.png";
+import LogoCometec from "../../assets/LogoCometec.webp";
 import "../../styles/RegisterCard.css";
 import { Card, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
