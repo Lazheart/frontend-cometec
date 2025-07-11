@@ -3,7 +3,7 @@ import { Card, CardTitle } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import React, { useState } from "react";
 import { recovery, verifyRecoveryCode, resetPassword } from "@/services/authService.ts";
-import LogoCometec from "@/assets/LogoCometec.png";
+import LogoCometec from "@/assets/LogoCometec.webp";
 
 interface Props {
     onClose: () => void;

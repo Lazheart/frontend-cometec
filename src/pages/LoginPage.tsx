@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import LoginCard from "../components/Login/LoginCard";
-import  LogoCometec from "../assets/LogoCometec.png";
+import  LogoCometec from "../assets/LogoCometec.webp";
 import {Link} from "react-router-dom";
 const LoginPage = () => {
     const sectionRef = useRef<HTMLDivElement>(null);

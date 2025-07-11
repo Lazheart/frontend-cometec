@@ -1,8 +1,8 @@
 import '../../styles/Hero.css';
 import Carrusel from '../Carrusel';
-import Restaurante1 from '../../assets/Restaurante1.png';
-import Restaurante2 from '../../assets/Restaurante2.png';
-import Restaurante3 from '../../assets/Restaurante3.png';
+import Restaurante1 from '../../assets/Restaurante1.webp';
+import Restaurante2 from '../../assets/Restaurante2.webp';
+import Restaurante3 from '../../assets/Restaurante3.webp';
 import CountUp from "react-countup";
 
 const images = [Restaurante1, Restaurante2, Restaurante3];

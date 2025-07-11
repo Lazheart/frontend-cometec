@@ -7,27 +7,6 @@
   justify-content: space-between; /* Asegura que título, contenido y botón se distribuyan */
   gap: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
-  /* Tamaño estandarizado */
-  width: 100%;
-  max-width: 773px;
-  min-height: 505px;
-
-  /* Centrado dentro del contenedor */
-  margin: auto;
-
-  box-sizing: border-box;
-  color: #FFFFFF;
-
-  /* Para que se vea bien en distintas pantallas */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.menu-item-icon {
-  width: 200px;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 10px;
 }
 
 .menu-item-image {

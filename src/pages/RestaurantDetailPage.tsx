@@ -5,6 +5,7 @@ import ImageCarousel from '../components/Restaurant/ImageCarousel';
 import CommentCard from '../components/Restaurant/CommentCard';
 import RatingSection from '../components/Restaurant/RatingSection';
 import MenuItemCard from '../components/Restaurant/MenuItemCard';
+import EditMenuCard from '@/components/Menu/EditMenuCard';
 import '../styles/RestaurantDetailPage.css';
 import '../styles/RestaurantName.css';
 import '../styles/ImageCarousel.css';
@@ -196,9 +197,7 @@ const loadRestaurantData = useCallback(async () => {
 
             {showEditMenuCard && (
               <div className="edit-menu-card">
-                {/* Aquí irá tu componente embebido de edición */}
-                <p>Aquí puedes editar el menú del restaurante.</p>
-                {/* Puedes reemplazar esto con tu propio componente */}
+                <EditMenuCard dishes={restaurantData.dishes} />
               </div>
             )}
           </div>)}
