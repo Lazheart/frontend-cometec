@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input.tsx";
 import React, { useState } from "react";
 import { recovery, verifyRecoveryCode, resetPassword } from "@/services/authService.ts";
 import { Link} from "react-router-dom";
-import LogoCometec from "@/assets/LogoCometec.png";
+import LogoCometec from "@/assets/LogoCometec.webp";
 
 
 

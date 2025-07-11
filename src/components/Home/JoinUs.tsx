@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card.tsx"
-import Restaurante1 from '../../assets/Restaurante1.png';
-import Restaurante2 from '../../assets/Restaurante2.png';
-import Restaurante3 from '../../assets/Restaurante3.png';
+import Restaurante1 from '../../assets/Restaurante1.webp';
+import Restaurante2 from '../../assets/Restaurante2.webp';
+import Restaurante3 from '../../assets/Restaurante3.webp';
 import "../../styles/JoinUs.css";
 
 const cardsData = [
