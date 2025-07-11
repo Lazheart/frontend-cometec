@@ -1,17 +1,33 @@
 .menu-item-card {
-  /* Corresponds to Rectangle 67, 68, 69, 70 */
   background: #F66405;
   border-radius: 50px;
-  padding: 30px; /* Adjust padding */
+  padding: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* Asegura que título, contenido y botón se distribuyan */
   gap: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow */
-  min-height: 505px; /* From your CSS, ensure content fits */
-  max-width: 773px; /* From your CSS, for individual card */
-  margin: auto; /* Center individual cards in the grid cells */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  /* Tamaño estandarizado */
+  width: 100%;
+  max-width: 773px;
+  min-height: 505px;
+
+  /* Centrado dentro del contenedor */
+  margin: auto;
+
   box-sizing: border-box;
-  color: #FFFFFF; /* Text color for content within this card */
+  color: #FFFFFF;
+
+  /* Para que se vea bien en distintas pantallas */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item-icon {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  margin-bottom: 10px;
 }
 
 .menu-item-image {
