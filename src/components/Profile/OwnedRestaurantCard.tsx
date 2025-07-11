@@ -4,9 +4,6 @@ import { RegisterRestaurantCard } from "@/components/Restaurant/RegisterRestaura
 import type { RestaurantSummaryDto } from "@/interfaces/Restaurant/RestaurantSummaryDto";
 import Api from "@/services/api";
 import "@/styles/OwnerRestaurantCard.css";
-import { useInView } from "@/hooks/useInView";
-
-const PAGE_SIZE = 4;
 
 const fetchOwnedRestaurants = async (): Promise<RestaurantSummaryDto[]> => {
   const res = await Api.get<{ content: RestaurantSummaryDto[] }>("/user/owned-restaurants");
@@ -17,8 +14,6 @@ const OwnedRestaurantCard = () => {
   const [restaurants, setRestaurants] = useState<RestaurantSummaryDto[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showCount, setShowCount] = useState(PAGE_SIZE);
-  const [ref, inView] = useInView<HTMLDivElement>();
   const [showRegisterCard, setShowRegisterCard] = useState(false); // NUEVO
 
   useEffect(() => {
@@ -31,45 +26,31 @@ const OwnedRestaurantCard = () => {
   if (loading) return <div className="owner-restaurants-loading">Cargando...</div>;
   if (error) return <div className="owner-restaurants-error">No se pudo cargar tus restaurantes</div>;
 
-  if (!restaurants.length) return (
-    <div ref={ref} className={`owner-restaurants-empty${inView ? " animate" : ""}`}>
-      <p className="owner-restaurants-question">¿Tienes un restaurante?</p>
-      <button
-        className="owner-restaurants-register-btn"
-        onClick={() => setShowRegisterCard(true)} // cambia la visibilidad del card
-      >
-        Regístrate ahora
-      </button>
-      {showRegisterCard && (
-        <RegisterRestaurantCard onClose={() => setShowRegisterCard(false)} />
-      )}
-    </div>
-  );
-
-  const visibleRestaurants = restaurants.slice(0, showCount);
-  const rows = [];
-  for (let i = 0; i < visibleRestaurants.length; i += 2) {
-    rows.push(visibleRestaurants.slice(i, i + 2));
-  }
-
   return (
-    <section className="owner-restaurants-section">
-      {rows.map((row, idx) => (
-        <div key={idx} className="owner-restaurants-row">
-          {row.map((restaurant) => (
-            <RestaurantItem key={restaurant.id} restaurant={restaurant} />
-          ))}
-        </div>
-      ))}
-      {showCount < restaurants.length && (
+    <div className="owner-restaurants-container w-full flex flex-col items-center">
+      <div className="flex flex-row items-center justify-center w-full mb-8 gap-8">
         <button
-          className="owner-restaurants-loadmore"
-          onClick={() => setShowCount((c) => c + PAGE_SIZE)}
+          className="bg-[#ff6600] text-white rounded-full w-14 h-14 flex items-center justify-center text-3xl shadow hover:bg-orange-700 transition"
+          title="Agregar restaurante"
+          onClick={() => setShowRegisterCard(true)}
         >
-          Cargar más
+          +
         </button>
-      )}
-    </section>
+        {showRegisterCard && (
+          <RegisterRestaurantCard onClose={() => setShowRegisterCard(false)} />
+        )}
+      </div>
+      {/* Lista de restaurantes del usuario */}
+      <div className="flex flex-wrap gap-4 justify-center w-full">
+        {loading && <p>Cargando...</p>}
+        {error && <p className="text-red-500">{error}</p>}
+        {restaurants.length === 0 && !loading && <p>No tienes restaurantes registrados.</p>}
+        {restaurants.map((restaurant) => (
+          <RestaurantItem key={restaurant.id} restaurant={restaurant} />
+        ))}
+      </div>
+      {/* ...paginación o carga infinita si aplica... */}
+    </div>
   );
 };
 
