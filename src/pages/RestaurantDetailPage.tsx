@@ -5,6 +5,7 @@ import ImageCarousel from '../components/Restaurant/ImageCarousel';
 import CommentCard from '../components/Restaurant/CommentCard';
 import RatingSection from '../components/Restaurant/RatingSection';
 import MenuItemCard from '../components/Restaurant/MenuItemCard';
+import EditMenuCard from '@/components/Menu/EditMenuCard';
 import '../styles/RestaurantDetailPage.css';
 import '../styles/RestaurantName.css';
 import '../styles/ImageCarousel.css';
@@ -13,7 +14,6 @@ import '../styles/RatingSection.css';
 import '../styles/MenuItemCard.css';
 import '../styles/Navbar.css';
 import '../styles/Footer.css';
-import Navbar from '../components/Navbar';
 import Footer from '../components/Home/Footer';
 import type { RestaurantResponseDto } from '@/interfaces/Restaurant/RestaurantResponseDto';
 import type { CommentResponseDto } from '@/interfaces/Comment/CommentResponseDto';
@@ -27,7 +27,7 @@ import { getRestaurantById } from '@/services/Restaurant/getRestaurantById';
 import { getRestaurantMenu } from '@/services/Restaurant/getRestaurantMenu';
 import { getRestaurantComments } from '@/services/Restaurant/getRestaurantComments';
 import { getRestaurantReviews } from '@/services/Restaurant/getRestaurantReviews';
-
+import { getMe } from '@/services/User/getMe';
 import { getDishCategories } from '@/services/Dish/getDishCategories';
 
 interface RestaurantPageData {
@@ -48,56 +48,60 @@ const RestaurantDetailPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentDishCategory, setCurrentDishCategory] = useState<DishCategory | "Todas las categorías">("Todas las categorías");
   const [availableDishCategories, setAvailableDishCategories] = useState<DishCategory[]>([]);
+  const [isOwner, setIsOwner] = useState<boolean>(false);
+  const [showEditMenuCard, setShowEditMenuCard] = useState<boolean>(false);
 
-  const loadRestaurantData = useCallback(async () => {
-    if (restaurantId === null || isNaN(restaurantId)) {
-      setError("ID de restaurante inválido.");
-      setLoading(false);
-      return;
-    }
+const loadRestaurantData = useCallback(async () => {
+  if (restaurantId === null || isNaN(restaurantId)) {
+    setError("ID de restaurante inválido.");
+    setLoading(false);
+    return;
+  }
 
-    setLoading(true);
-    setError(null);
-    try {
-      const [
-        restaurantDetails,
-        restaurantComments,
-        restaurantMenu,
-        restaurantReviews,
-        dishCategories
-      ] = await Promise.all([
-        getRestaurantById(restaurantId),
-        getRestaurantComments(restaurantId, 0, 10),
-        getRestaurantMenu(restaurantId),
-        getRestaurantReviews(restaurantId, 0, 10),
-        getDishCategories()
-      ]);
+  setLoading(true);
+  setError(null);
+  try {
+    const [
+      restaurantDetails,
+      restaurantComments,
+      restaurantMenu,
+      restaurantReviews,
+      dishCategories,
+      userData
+    ] = await Promise.all([
+      getRestaurantById(restaurantId),
+      getRestaurantComments(restaurantId, 0, 10),
+      getRestaurantMenu(restaurantId),
+      getRestaurantReviews(restaurantId, 0, 10),
+      getDishCategories(),
+      getMe()
+    ]);
 
-      // Usa la imagen principal del restaurante o un placeholder
-      const images = restaurantDetails.imageUrl
-        ? [restaurantDetails.imageUrl]
-        : ['https://via.placeholder.com/800x400?text=Sin+imagen'];
+    const images = restaurantDetails.imageUrl
+      ? [restaurantDetails.imageUrl]
+      : ['https://cdn.clarosports.com/clarosports/2023/10/Sin-titulo-2023-10-05T165044.275.jpg'];
 
-      const dishes = restaurantMenu.dishes || [];
+    const dishes = restaurantMenu.dishes || [];
 
-      setRestaurantData({
-        restaurant: restaurantDetails,
-        images,
-        comments: restaurantComments.content || [],
-        menu: restaurantMenu,
-        dishes,
-        reviews: restaurantReviews.content || [],
-      });
+    setRestaurantData({
+      restaurant: restaurantDetails,
+      images,
+      comments: restaurantComments.content || [],
+      menu: restaurantMenu,
+      dishes,
+      reviews: restaurantReviews.content || [],
+    });
 
-      setAvailableDishCategories(dishCategories);
+    setAvailableDishCategories(dishCategories);
+    setIsOwner(userData.id === restaurantDetails.ownerId);
 
-    } catch (err) {
-      console.error("Error fetching restaurant data:", err);
-      setError((err instanceof Error ? err.message : "No se pudo cargar la información del restaurante. Por favor, inténtalo de nuevo más tarde."));
-    } finally {
-      setLoading(false);
-    }
-  }, [restaurantId]);
+  } catch (err) {
+    console.error("Error fetching restaurant data:", err);
+    setError((err instanceof Error ? err.message : "No se pudo cargar la información del restaurante. Por favor, inténtalo de nuevo más tarde."));
+  } finally {
+    setLoading(false);
+  }
+}, [restaurantId]);
 
   useEffect(() => {
     loadRestaurantData();
@@ -126,14 +130,10 @@ const RestaurantDetailPage: React.FC = () => {
 
   return (
     <div className="restaurant-page-container">
-      <Navbar />
-
-      <div className="top-section">
         <div className="restaurant-name-overlay">
           <RestaurantName name={restaurantData.restaurant.name} />
         </div>
         <ImageCarousel images={restaurantData.images} />
-      </div>
 
       <div className="content-section">
         <div className="comments-ratings-section">
@@ -186,8 +186,22 @@ const RestaurantDetailPage: React.FC = () => {
             <p className="no-data-message">No hay platillos en esta categoría.</p>
           )}
         </div>
-      </div>
+        {isOwner && (
+          <div className="edit-menu-section">
+            <button
+              className="edit-menu-button"
+              onClick={() => setShowEditMenuCard(prev => !prev)}
+            >
+              {showEditMenuCard ? "Cerrar Edición de Menú" : "Editar Menú"}
+            </button>
 
+            {showEditMenuCard && (
+              <div className="edit-menu-card">
+                <EditMenuCard dishes={restaurantData.dishes} />
+              </div>
+            )}
+          </div>)}
+      </div>
       <Footer />
     </div>
   );
