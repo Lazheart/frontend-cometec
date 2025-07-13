@@ -19,6 +19,7 @@ export const RestaurantItem: React.FC<Props> = ({ restaurant }) => {
                 <div  className="restauratItemCard-content">
                     {restaurant.name}
                 </div>
+
                 <img
                 src={restaurant.imageUrl || "https://cdn.clarosports.com/clarosports/2023/10/Sin-titulo-2023-10-05T165044.275.jpg"} // usa `restaurant.imageUrl` si existe
                 />
@@ -31,3 +32,6 @@ export const RestaurantItem: React.FC<Props> = ({ restaurant }) => {
         </div>
     );
 };
+
+// src/components/Restaurant/RestaurantItem.tsx
+export default RestaurantItem;
