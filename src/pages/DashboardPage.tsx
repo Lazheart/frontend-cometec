@@ -38,7 +38,7 @@ export const DashboardPage: React.FC = () => {
   const categories = Object.entries(categoryTitles);
 
   return (
-    <div className="dashboard-wrapper paddings flexCenter">
+    <div className="dashboard-wrapper paddings flexCenter bg-gray-100">
       <div className="dashboard-best-container flexCenter innerWidth mb-10">
         <Best />
       </div>
